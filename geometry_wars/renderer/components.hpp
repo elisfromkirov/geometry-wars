@@ -3,6 +3,8 @@
 #include <math/matrix3x3.hpp>
 #include <math/vector2.hpp>
 
+#include <renderer_back_end/basic_vertex_buffer.hpp>
+
 #include <renderer/vertex.hpp>
 
 class TransformComponent {
@@ -15,7 +17,7 @@ class TransformComponent {
 
   void SetScale(const Vector2f& scale);
 
-  Matrix3x3f GetModel() const;
+  Matrix3x3f GetModelMatrix() const;
 
  private:
   Matrix3x3f translate_;
@@ -27,11 +29,8 @@ class MeshComponent {
  public:
   MeshComponent(Vertex* buffer, std::uint64_t size);
 
-  Vertex* GetVertices() const;
-
-  std::uint64_t GetVerticesCount() const;
+  VertexBuffer* GetVertexBuffer();
 
  private:
-  Vertex* buffer_;
-  std::uint64_t size_;
+  VertexBuffer buffer_;
 };

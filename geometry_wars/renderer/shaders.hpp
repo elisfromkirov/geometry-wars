@@ -5,6 +5,7 @@
 
 #include <renderer_back_end/basic_fragment_shader.hpp>
 #include <renderer_back_end/basic_vertex_shader.hpp>
+#include <renderer_back_end/basic_program.hpp>
 
 #include <renderer/vertex.hpp>
 

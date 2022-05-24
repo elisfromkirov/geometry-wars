@@ -1,7 +1,7 @@
 template <typename ComponentT>
 template <typename... Args>
 ComponentHolderBase<ComponentT>::ComponentHolderBase(Args&&... args) 
-    : component_{std::forward<Args>(args)...} {
+    : component_(std::forward<Args>(args)...) {
 }
 
 template <typename ComponentT>

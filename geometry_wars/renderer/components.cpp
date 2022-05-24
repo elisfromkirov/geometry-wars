@@ -25,19 +25,14 @@ void TransformComponent::SetScale(const Vector2f& scale) {
   scale_[1][1] = scale[1];
 }
 
-Matrix3x3f TransformComponent::GetModel() const {
+Matrix3x3f TransformComponent::GetModelMatrix() const {
   return translate_ * rotation_ * scale_;
 }
 
 MeshComponent::MeshComponent(Vertex* buffer, std::uint64_t size)
-    : buffer_{buffer},
-      size_{size} {
+    : buffer_{buffer, size} {
 }
 
-Vertex* MeshComponent::GetVertices() const {
-  return buffer_;
-}
-
-std::uint64_t MeshComponent::GetVerticesCount() const {
-  return size_;
+VertexBuffer* MeshComponent::GetVertexBuffer() {
+  return &buffer_;
 }

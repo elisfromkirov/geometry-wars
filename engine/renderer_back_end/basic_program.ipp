@@ -1,18 +1,23 @@
 template <typename Vertex>
-BasicProgram<Vertex>::BasicProgram(
-  typename BasicProgram<Vertex>::VertexBuffer* vertex_buffer,
-  typename BasicProgram<Vertex>::VertexShader* vertex_shader,
-  typename BasicProgram<Vertex>::FragmentShader* fragment_shader)
-    : vertex_buffer_{vertex_buffer},
-      vertex_shader_{vertex_shader},
-      fragment_shader_{fragment_shader} {
-  assert(vertex_buffer_ != nullptr);
-  assert(vertex_shader_ != nullptr);
-  assert(fragment_shader != nullptr);
+void BasicProgram<Vertex>::BindVertexShader(BasicVertexShader<Vertex>* vertex_shader) {
+  vertex_shader_ = vertex_shader;
+}
+
+template <typename Vertex>
+void BasicProgram<Vertex>::BindFragmentShader(BasicFragmentShader<Vertex>* fragment_shader) {
+  fragment_shader_ = fragment_shader;
+}
+
+template <typename Vertex>
+void BasicProgram<Vertex>::BindVertexBuffer(BasicVertexBuffer<Vertex>* vertex_buffer) {
+  vertex_buffer_ = vertex_buffer;
 }
 
 template <typename Vertex>
 void BasicProgram<Vertex>::Execute(Framebuffer* framebuffer) {
+  assert(vertex_shader_ != nullptr);
+  assert(fragment_shader_ != nullptr);
+  assert(vertex_buffer_ != nullptr);
   assert(framebuffer != nullptr);
 
   Vertex* buffer = vertex_buffer_->GetBuffer();

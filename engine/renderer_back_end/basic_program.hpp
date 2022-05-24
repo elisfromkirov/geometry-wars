@@ -11,26 +11,25 @@
 template <typename Vertex>
 class BasicProgram : public IProgram {
  public:
-  typedef BasicVertexBuffer<Vertex> VertexBuffer;
-  typedef BasicFragmentShader<Vertex> FragmentShader; 
-  typedef BasicVertexShader<Vertex> VertexShader;
+  void BindVertexShader(BasicVertexShader<Vertex>* vertex_shader);
 
- public:
-  BasicProgram(VertexBuffer* vertex_buffer, VertexShader* vertex_shader, FragmentShader* fragment_shader);
+  void BindFragmentShader(BasicFragmentShader<Vertex>* fragment_shader);
 
-  void Execute(Framebuffer* framebuffer) override;
+  void BindVertexBuffer(BasicVertexBuffer<Vertex>* vertex_buffer);
 
- private:
+  void Execute(Framebuffer* framebuffer) override;  
+
+ protected:
   Vector2i MapVertexCoordinates(Framebuffer* framebuffer, Vector3f vertex);
 
   std::uint32_t MapColor(Vector3f color);
 
   void Draw(Framebuffer* framebuffer, Vector2i a, Vector2i b);
 
- private:
-  VertexBuffer* vertex_buffer_;
-  FragmentShader* fragment_shader_;
-  VertexShader* vertex_shader_;
+ protected:
+  BasicVertexShader<Vertex>* vertex_shader_;
+  BasicFragmentShader<Vertex>* fragment_shader_;
+  BasicVertexBuffer<Vertex>* vertex_buffer_;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
