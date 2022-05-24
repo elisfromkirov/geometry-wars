@@ -22,7 +22,6 @@ class VertexShader : public BasicVertexShader<Vertex> {
  private:
   Matrix3x3f model_;
   Matrix3x3f proj_;
-  Matrix3x3f result_;
 };
 
 class FragmentShader : public BasicFragmentShader<Vertex> {

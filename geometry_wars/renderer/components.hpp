@@ -12,6 +12,7 @@ class TransformComponent {
   TransformComponent();
 
   void SetPosition(const Vector2f& position);
+  Vector2f GetPosition() const;
 
   void SetRotation(const float angle);
 

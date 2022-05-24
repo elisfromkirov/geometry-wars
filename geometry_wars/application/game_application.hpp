@@ -2,7 +2,10 @@
 
 #include <application/application_base.hpp>
 
-#include <entity_component/entity_handle.hpp>
+#include <collision/collision_detector.hpp>
+
+#include <game/game_command_executor.hpp>
+#include <game/move_command.hpp>
 
 #include <renderer/components.hpp>
 #include <renderer/program.hpp>
@@ -22,10 +25,15 @@ class GameApplication : public ApplicationBase {
 
  private:
   EntityRegistry registry_;
+  EntityHandle handle_;
 
   VertexShader vertex_shader_;
   FragmentShader fragment_shader_;
   Program program_;
   Renderer renderer_;
   Scene scene_;
+
+  CollisionDetector collision_detector_;
+
+  GameCommandExecutor command_executor_;
 };

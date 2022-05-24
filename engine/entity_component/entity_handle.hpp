@@ -4,7 +4,7 @@
 
 class EntityHandle {
  public:
-  EntityHandle(EntityId id, EntityRegistry* registry);
+  EntityHandle(EntityId id = 0, EntityRegistry* registry = nullptr);
 
   void Destroy();
 

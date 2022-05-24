@@ -13,6 +13,10 @@ void TransformComponent::SetPosition(const Vector2f& position) {
   translate_[2][1] = position[1];
 }
 
+Vector2f TransformComponent::GetPosition() const {
+  return Vector2f{translate_[2][0], translate_[2][1]}; 
+}
+
 void TransformComponent::SetRotation(const float angle) {
   rotation_[0][0] =  cosf(angle);
   rotation_[0][1] =  sinf(angle);
@@ -26,7 +30,9 @@ void TransformComponent::SetScale(const Vector2f& scale) {
 }
 
 Matrix3x3f TransformComponent::GetModelMatrix() const {
-  return translate_ * rotation_ * scale_;
+  Matrix3x3f model = translate_ * rotation_ * scale_;  
+  
+  return model;
 }
 
 MeshComponent::MeshComponent(Vertex* buffer, std::uint64_t size)
